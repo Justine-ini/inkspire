@@ -1,13 +1,12 @@
-from sqlmodel import SQLModel, Field,  Column
-from sqlalchemy import UUID, String # Import UUID from SQLAlchemy
 from sqlalchemy.dialects.mysql import TIMESTAMP  # Import MySQL-specific TIMESTAMP
+from sqlmodel import SQLModel, Field,  Column
+from datetime import datetime
+from sqlalchemy import String
 import uuid
-from datetime import date, datetime
 
-class Book(SQLModel, table=True):
-    __tablename__ = "books"
-    
-    # Store UUID as CHAR(36) with collation
+class User(SQLModel, table=True):
+    __tablename__ = "users"
+
     uid: uuid.UUID = Field(
         sa_column=Column(
             String(36, collation="utf8_bin"),  # Collation defined in String type
@@ -16,12 +15,13 @@ class Book(SQLModel, table=True):
             nullable=False,
         )
     )
-    title: str
-    author: str
-    publisher: str
-    published_date: str
-    page_count: int
-    language: str
+    uid: uuid.UUID
+    username: str
+    email: str
+    password: str
+    first_name: str
+    last_name: str
+    is_verified: bool = Field(default=False)
     created_at: datetime = Field(
         sa_column=Column(TIMESTAMP, default=datetime.now)
     )
@@ -29,5 +29,6 @@ class Book(SQLModel, table=True):
         sa_column=Column(TIMESTAMP, default=datetime.now)
     )
 
+
     def __repr__(self):
-        return f"<Book {self.title}>"
+        return f"<User {self.username}>"

@@ -3,3 +3,6 @@ __pycache__
 .env
 database.py
 settings.py
+.history/
+migrations/
+alembic.ini

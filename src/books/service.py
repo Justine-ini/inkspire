@@ -1,9 +1,12 @@
 
 from fastapi import HTTPException, status
 from sqlmodel.ext.asyncio.session import AsyncSession
-from src.books.routes import get_books
+# from src.books.routes import get_books
 from src.books.schemas import Book, BookCreateModel, BookUpdateModel
 from sqlmodel import select, desc
+
+# To be deleted
+from src.books.models import Book
 
 class BookService:
     async def get_books(self, session:AsyncSession):
