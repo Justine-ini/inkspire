@@ -1,6 +1,7 @@
 env/
 __pycache__
 .env
+.vscode
 database.py
 settings.py
 .history/

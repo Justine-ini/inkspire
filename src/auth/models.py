@@ -15,18 +15,17 @@ class User(SQLModel, table=True):
             nullable=False,
         )
     )
-    uid: uuid.UUID
     username: str
     email: str
-    password: str
-    first_name: str
-    last_name: str
+    password: str = Field(exclude=True)
+    first_name: str = Field(default="NA")
+    last_name: str = Field(default="NA")
     is_verified: bool = Field(default=False)
     created_at: datetime = Field(
         sa_column=Column(TIMESTAMP, default=datetime.now)
     )
     updated_at: datetime = Field(
-        sa_column=Column(TIMESTAMP, default=datetime.now)
+        sa_column=Column(TIMESTAMP, default=datetime.now, onupdate=datetime.now)
     )
 
 
